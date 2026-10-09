@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbería Jesús Quintero</title>
+
+    <!-- Tailwind (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        fondo: '#333847',
+                        panel: '#2a3040',
+                        boton: { DEFAULT: '#2b3b70', hover: '#384b94' },
+                        oro: { DEFAULT: '#ffd700', hover: '#ffc800' },
+                        campo: { DEFAULT: '#3b4257', focus: '#48506b' },
+                    },
+                    fontFamily: {
+                        sans: ['"Segoe UI"', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif'],
+                    },
+                    keyframes: {
+                        aparecer: {
+                            from: { opacity: '0', transform: 'translateY(10px)' },
+                            to: { opacity: '1', transform: 'translateY(0)' },
+                        },
+                    },
+                    animation: {
+                        aparecer: 'aparecer 0.3s ease forwards',
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+
+<body class="bg-fondo font-sans flex flex-col items-center justify-center min-h-screen p-5">
+
+    <!-- LOGO -->
+    <div class="mb-10 text-center">
+        <img src="img/logo.png" alt="Barbería Jesús Quintero"
+            class="w-full max-w-[320px] max-[400px]:max-w-[260px] h-auto">
+    </div>
+
+    <!-- BOTONES PRINCIPALES -->
+     
+    <div id="botonesPrincipales" class="flex flex-col gap-[22px] w-full max-w-[320px] mb-[30px] ">
+<button id="btnIniciar" type="button"
+    class="w-full flex items-center justify-center gap-2 px-5 py-3.5 rounded-lg bg-boton text-white text-[17px] font-medium shadow-md cursor-pointer transition duration-300 hover:bg-boton-hover hover:-translate-y-0.5 active:translate-y-0">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user preview-icon shrink-0"
+        aria-hidden="true">
+        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+        <circle cx="12" cy="7" r="4" />
+    </svg>
+    <span>Iniciar Sesión</span>
+</button>
+
+<button id="btnCrear" type="button"
+    class="w-full flex items-center justify-center gap-2 px-5 py-3.5 rounded-lg bg-boton text-white text-[17px] font-medium shadow-md cursor-pointer transition duration-300 hover:bg-boton-hover hover:-translate-y-0.5 active:translate-y-0">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="lucide lucide-user-plus preview-icon shrink-0" aria-hidden="true">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <line x1="19" x2="19" y1="8" y2="14" />
+        <line x1="22" x2="16" y1="11" y2="11" />
+    </svg>
+    <span>Crear cuenta</span>
+</button>
+
+    </div>
+
+    <!-- FORMULARIO INICIAR SESIÓN -->
+    <div id="formIniciar"
+        class="hidden w-full max-w-[360px] bg-panel p-[30px] max-[400px]:p-[22px] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.25)]">
+
+        <h2 class="text-oro text-center mb-[25px] text-[22px] max-[400px]:text-[19px]">Iniciar Sesión</h2>
+
+        <form action="login.php" method="POST">
+
+            <div class="mb-[18px]">
+                <label for="correoLogin" class="block text-[#e0e0e0] mb-1.5 text-[15px]">
+                    Correo electrónico
+                </label>
+                <input type="email" id="correoLogin" name="correo" placeholder="ejemplo@correo.com" required
+                    class="w-full px-3.5 py-3 rounded-md bg-campo text-white text-[15px] outline-none transition-colors duration-200 focus:bg-campo-focus">
+            </div>
+
+            <div class="mb-[18px]">
+                <label for="contrasenaLogin" class="block text-[#e0e0e0] mb-1.5 text-[15px]">
+                    Contraseña
+                </label>
+                <input type="password" id="contrasenaLogin" name="contrasena" placeholder="Tu contraseña" required
+                    class="w-full px-3.5 py-3 rounded-md bg-campo text-white text-[15px] outline-none transition-colors duration-200 focus:bg-campo-focus">
+            </div>
+
+            <button type="submit"
+                class="w-full mt-2.5 p-[13px] bg-oro text-[#1a1a2e] font-semibold rounded-md text-base cursor-pointer transition-colors duration-300 hover:bg-oro-hover">
+                Entrar
+            </button>
+
+            <button type="button" id="cerrarIniciar"
+                class="w-full mt-3 p-1.5 bg-transparent text-[#b0b0b0] text-sm text-center cursor-pointer hover:text-white">
+                ← Volver
+            </button>
+
+        </form>
+    </div>
+
+    <!-- FORMULARIO CREAR CUENTA -->
+    <div id="formCrear"
+        class="hidden w-full max-w-[360px] bg-panel p-[30px] max-[400px]:p-[22px] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.25)]">
+
+        <h2 class="text-oro text-center mb-[25px] text-[22px] max-[400px]:text-[19px]">Crear Cuenta</h2>
+
+        <form id="formulario-cliente">
+
+            <div class="mb-[18px]">
+                <label for="nombre" class="block text-[#e0e0e0] mb-1.5 text-[15px]">
+                    Nombre completo
+                </label>
+                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required
+                    class="w-full px-3.5 py-3 rounded-md bg-campo text-white text-[15px] outline-none transition-colors duration-200 focus:bg-campo-focus">
+            </div>
+
+            <div class="mb-[18px]">
+                <label for="correo" class="block text-[#e0e0e0] mb-1.5 text-[15px]">
+                    Correo electrónico
+                </label>
+                <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required
+                    class="w-full px-3.5 py-3 rounded-md bg-campo text-white text-[15px] outline-none transition-colors duration-200 focus:bg-campo-focus">
+            </div>
+
+            <div class="mb-[18px]">
+                <label for="telefono" class="block text-[#e0e0e0] mb-1.5 text-[15px]">
+                    Teléfono
+                </label>
+                <input type="tel" id="telefono" name="telefono" placeholder="+57 300 000 0000" required
+                    class="w-full px-3.5 py-3 rounded-md bg-campo text-white text-[15px] outline-none transition-colors duration-200 focus:bg-campo-focus">
+            </div>
+
+            <div class="mb-[18px]">
+                <label for="contrasena" class="block text-[#e0e0e0] mb-1.5 text-[15px]">
+                    Contraseña
+                </label>
+                <input type="password" id="contrasena" name="contrasena" placeholder="Crea tu contraseña" required
+                    class="w-full px-3.5 py-3 rounded-md bg-campo text-white text-[15px] outline-none transition-colors duration-200 focus:bg-campo-focus">
+            </div>
+
+            <button type="submit"
+                class="w-full mt-2.5 p-[13px] bg-oro text-[#1a1a2e] font-semibold rounded-md text-base cursor-pointer transition-colors duration-300 hover:bg-oro-hover">
+                Registrarse
+            </button>
+
+            <button type="button" id="cerrarCrear"
+                class="w-full mt-3 p-1.5 bg-transparent text-[#b0b0b0] text-sm text-center cursor-pointer hover:text-white">
+                ← Volver
+            </button>
+
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
