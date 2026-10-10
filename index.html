@@ -3,8 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Barbería Jesús Quintero</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
 
     <!-- Tailwind (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -15,156 +19,122 @@
                     colors: {
                         fondo: '#333847',
                         panel: '#2a3040',
+                        texto: '#e8e9ee',
+                        suave: '#b4b8c6',
                         boton: { DEFAULT: '#2b3b70', hover: '#384b94' },
                         oro: { DEFAULT: '#ffd700', hover: '#ffc800' },
-                        campo: { DEFAULT: '#3b4257', focus: '#48506b' },
                     },
                     fontFamily: {
-                        sans: ['"Segoe UI"', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif'],
+                        titulo: ['Oswald', 'Impact', 'sans-serif'],
+                        cuerpo: ['"Source Serif 4"', 'Georgia', 'serif'],
                     },
                     keyframes: {
-                        aparecer: {
-                            from: { opacity: '0', transform: 'translateY(10px)' },
-                            to: { opacity: '1', transform: 'translateY(0)' },
+                        subir: {
+                            from: { opacity: '0', transform: 'translateY(14px)' },
+                            to: { opacity: '1', transform: 'none' },
                         },
                     },
                     animation: {
-                        aparecer: 'aparecer 0.3s ease forwards',
+                        subir: 'subir .7s ease-out both',
                     },
                 },
             },
         };
     </script>
+    <style>
+        :root { color-scheme: dark; }
+        a:focus-visible { outline: 3px solid #ffd700; outline-offset: 3px; }
+        @media (prefers-reduced-motion: reduce) {
+            .animate-subir { animation: none !important; }
+        }
+    </style>
 </head>
 
-<body class="bg-fondo font-sans flex flex-col items-center justify-center min-h-screen p-5">
+<body class="bg-fondo text-texto font-cuerpo antialiased">
 
-    <!-- LOGO -->
-    <div class="mb-10 text-center">
+    <!-- INICIO -->
+    <header class="px-5 pt-10 pb-16 text-center">
         <img src="img/logo.png" alt="Barbería Jesús Quintero"
-            class="w-full max-w-[320px] max-[400px]:max-w-[260px] h-auto">
-    </div>
+            class="mx-auto w-full max-w-[420px] max-[400px]:max-w-[260px] h-auto animate-subir">
 
-    <!-- BOTONES PRINCIPALES -->
-     
-    <div id="botonesPrincipales" class="flex flex-col gap-[22px] w-full max-w-[320px] mb-[30px] ">
-<button id="btnIniciar" type="button"
-    class="w-full flex items-center justify-center gap-2 px-5 py-3.5 rounded-lg bg-boton text-white text-[17px] font-medium shadow-md cursor-pointer transition duration-300 hover:bg-boton-hover hover:-translate-y-0.5 active:translate-y-0">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user preview-icon shrink-0"
-        aria-hidden="true">
-        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-        <circle cx="12" cy="7" r="4" />
-    </svg>
-    <span>Iniciar Sesión</span>
-</button>
+        <h1 class="font-titulo font-semibold text-3xl sm:text-5xl text-oro mt-8 tracking-wide">
+            Corte limpio, barba al detalle
+        </h1>
+        <p class="mt-4 mx-auto max-w-[34ch] text-lg text-suave">
+            Barbería de oficio: llegas, te sientas y sales como querías.
+        </p>
+    </header>
 
-<button id="btnCrear" type="button"
-    class="w-full flex items-center justify-center gap-2 px-5 py-3.5 rounded-lg bg-boton text-white text-[17px] font-medium shadow-md cursor-pointer transition duration-300 hover:bg-boton-hover hover:-translate-y-0.5 active:translate-y-0">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-        class="lucide lucide-user-plus preview-icon shrink-0" aria-hidden="true">
-        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <line x1="19" x2="19" y1="8" y2="14" />
-        <line x1="22" x2="16" y1="11" y2="11" />
-    </svg>
-    <span>Crear cuenta</span>
-</button>
+    <main>
 
-    </div>
-
-    <!-- FORMULARIO INICIAR SESIÓN -->
-    <div id="formIniciar"
-        class="hidden w-full max-w-[360px] bg-panel p-[30px] max-[400px]:p-[22px] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.25)]">
-
-        <h2 class="text-oro text-center mb-[25px] text-[22px] max-[400px]:text-[19px]">Iniciar Sesión</h2>
-
-        <form action="login.php" method="POST">
-
-            <div class="mb-[18px]">
-                <label for="correoLogin" class="block text-[#e0e0e0] mb-1.5 text-[15px]">
-                    Correo electrónico
-                </label>
-                <input type="email" id="correoLogin" name="correo" placeholder="ejemplo@correo.com" required
-                    class="w-full px-3.5 py-3 rounded-md bg-campo text-white text-[15px] outline-none transition-colors duration-200 focus:bg-campo-focus">
+        <!-- SERVICIOS -->
+        <section id="servicios" class="bg-panel px-5 py-16">
+            <div class="mx-auto max-w-2xl">
+                <h2 class="font-titulo font-semibold text-3xl text-oro">Servicios</h2>
+                <ul class="mt-8 divide-y divide-white/10">
+                    <li class="py-5">
+                        <h3 class="font-titulo text-xl text-white">Corte clásico</h3>
+                        <p class="text-suave mt-1">Tijera y máquina, con el acabado que pidas. Terminamos con perfilado.</p>
+                    </li>
+                    <li class="py-5">
+                        <h3 class="font-titulo text-xl text-white">Barba</h3>
+                        <p class="text-suave mt-1">Arreglo y perfilado de barba, con toalla caliente y navaja.</p>
+                    </li>
+                    <li class="py-5">
+                        <h3 class="font-titulo text-xl text-white">Corte y barba</h3>
+                        <p class="text-suave mt-1">Los dos servicios en una sola silla, en una sola visita.</p>
+                    </li>
+                    <li class="py-5">
+                        <h3 class="font-titulo text-xl text-white">Corte para niños</h3>
+                        <p class="text-suave mt-1">Con paciencia y sin afanes, para que salgan peinados y contentos.</p>
+                    </li>
+                </ul>
             </div>
+        </section>
 
-            <div class="mb-[18px]">
-                <label for="contrasenaLogin" class="block text-[#e0e0e0] mb-1.5 text-[15px]">
-                    Contraseña
-                </label>
-                <input type="password" id="contrasenaLogin" name="contrasena" placeholder="Tu contraseña" required
-                    class="w-full px-3.5 py-3 rounded-md bg-campo text-white text-[15px] outline-none transition-colors duration-200 focus:bg-campo-focus">
+        <!-- CÓMO RESERVAR -->
+        <section id="como" class="px-5 py-16">
+            <div class="mx-auto max-w-2xl">
+                <h2 class="font-titulo font-semibold text-3xl text-oro">Cómo reservar</h2>
+                <ol class="mt-8 space-y-6">
+                    <li class="flex gap-4">
+                        <span class="shrink-0 w-10 h-10 rounded-full bg-oro text-[#1a1a2e] font-titulo font-semibold grid place-items-center">1</span>
+                        <p><strong class="font-titulo text-white text-lg font-medium">Crea tu cuenta.</strong><br><span class="text-suave">Solo necesitas nombre, correo y teléfono.</span></p>
+                    </li>
+                    <li class="flex gap-4">
+                        <span class="shrink-0 w-10 h-10 rounded-full bg-oro text-[#1a1a2e] font-titulo font-semibold grid place-items-center">2</span>
+                        <p><strong class="font-titulo text-white text-lg font-medium">Elige tu servicio y tu hora.</strong><br><span class="text-suave">Escoge lo que necesitas y el momento que te queda mejor.</span></p>
+                    </li>
+                    <li class="flex gap-4">
+                        <span class="shrink-0 w-10 h-10 rounded-full bg-oro text-[#1a1a2e] font-titulo font-semibold grid place-items-center">3</span>
+                        <p><strong class="font-titulo text-white text-lg font-medium">Llega y siéntate.</strong><br><span class="text-suave">Te atendemos a la hora acordada.</span></p>
+                    </li>
+                </ol>
             </div>
+        </section>
 
-            <button type="submit"
-                class="w-full mt-2.5 p-[13px] bg-oro text-[#1a1a2e] font-semibold rounded-md text-base cursor-pointer transition-colors duration-300 hover:bg-oro-hover">
-                Entrar
-            </button>
+        <!-- BOTONES DE ACCESO (al final de la página) -->
+        <section id="acceso" class="bg-panel px-5 py-16 text-center">
+            <div class="mx-auto max-w-md">
+                <h2 class="font-titulo font-semibold text-3xl text-oro">Agenda tu cita</h2>
+                <p class="mt-3 text-suave">Entra a tu cuenta o crea una para reservar tu turno.</p>
 
-            <button type="button" id="cerrarIniciar"
-                class="w-full mt-3 p-1.5 bg-transparent text-[#b0b0b0] text-sm text-center cursor-pointer hover:text-white">
-                ← Volver
-            </button>
-
-        </form>
-    </div>
-
-    <!-- FORMULARIO CREAR CUENTA -->
-    <div id="formCrear"
-        class="hidden w-full max-w-[360px] bg-panel p-[30px] max-[400px]:p-[22px] rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.25)]">
-
-        <h2 class="text-oro text-center mb-[25px] text-[22px] max-[400px]:text-[19px]">Crear Cuenta</h2>
-
-        <form id="formulario-cliente">
-
-            <div class="mb-[18px]">
-                <label for="nombre" class="block text-[#e0e0e0] mb-1.5 text-[15px]">
-                    Nombre completo
-                </label>
-                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required
-                    class="w-full px-3.5 py-3 rounded-md bg-campo text-white text-[15px] outline-none transition-colors duration-200 focus:bg-campo-focus">
+                <a href="acceso.html"
+                    class="mt-8 inline-block w-full px-8 py-3.5 rounded-lg bg-boton text-white font-titulo text-lg font-medium hover:bg-boton-hover transition-colors">
+                    Iniciar sesión
+                </a>
+                <a href="acceso.html"
+                    class="mt-4 inline-block w-full px-8 py-3.5 rounded-lg bg-oro text-[#1a1a2e] font-titulo text-lg font-semibold hover:bg-oro-hover transition-colors">
+                    Crear cuenta
+                </a>
             </div>
+        </section>
 
-            <div class="mb-[18px]">
-                <label for="correo" class="block text-[#e0e0e0] mb-1.5 text-[15px]">
-                    Correo electrónico
-                </label>
-                <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required
-                    class="w-full px-3.5 py-3 rounded-md bg-campo text-white text-[15px] outline-none transition-colors duration-200 focus:bg-campo-focus">
-            </div>
+    </main>
 
-            <div class="mb-[18px]">
-                <label for="telefono" class="block text-[#e0e0e0] mb-1.5 text-[15px]">
-                    Teléfono
-                </label>
-                <input type="tel" id="telefono" name="telefono" placeholder="+57 300 000 0000" required
-                    class="w-full px-3.5 py-3 rounded-md bg-campo text-white text-[15px] outline-none transition-colors duration-200 focus:bg-campo-focus">
-            </div>
-
-            <div class="mb-[18px]">
-                <label for="contrasena" class="block text-[#e0e0e0] mb-1.5 text-[15px]">
-                    Contraseña
-                </label>
-                <input type="password" id="contrasena" name="contrasena" placeholder="Crea tu contraseña" required
-                    class="w-full px-3.5 py-3 rounded-md bg-campo text-white text-[15px] outline-none transition-colors duration-200 focus:bg-campo-focus">
-            </div>
-
-            <button type="submit"
-                class="w-full mt-2.5 p-[13px] bg-oro text-[#1a1a2e] font-semibold rounded-md text-base cursor-pointer transition-colors duration-300 hover:bg-oro-hover">
-                Registrarse
-            </button>
-
-            <button type="button" id="cerrarCrear"
-                class="w-full mt-3 p-1.5 bg-transparent text-[#b0b0b0] text-sm text-center cursor-pointer hover:text-white">
-                ← Volver
-            </button>
-
-        </form>
-    </div>
-
-    <script src="script.js"></script>
+    <footer class="px-5 py-8 text-center text-sm text-suave">
+        Barbería Jesús Quintero
+    </footer>
 
 </body>
 
